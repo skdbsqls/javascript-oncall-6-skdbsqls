@@ -7,7 +7,30 @@ class Assign {
 
   // 업무 배정하기
   assignWork() {
-    for (let i = 0, j = 0, k = 0; i < this.calendar.length; i++) {
+    this.assignWeekday();
+    this.assignWeekend();
+    this.closeContinuous();
+    return this.calendar;
+  }
+
+  // 평일 업무 배정하기
+  assignWeekday() {
+    for (let i = 0, j = 0; i < this.calendar.length; i++) {
+      const weekday = ["월", "화", "수", "목", "금"];
+
+      if (weekday.includes(this.calendar[i].date)) {
+        if (j >= this.weekdayList.length) {
+          j = 0;
+        }
+        this.calendar[i].name = this.weekdayList[j];
+        j++;
+      }
+    }
+  }
+
+  // 휴일 업무 배정하기
+  assignWeekend() {
+    for (let i = 0, j = 0; i < this.calendar.length; i++) {
       if (
         this.calendar[i].date === "토" ||
         this.calendar[i].date === "일" ||
@@ -18,16 +41,8 @@ class Assign {
         }
         this.calendar[i].name = this.weekendList[j];
         j++;
-      } else {
-        if (k >= this.weekdayList.length) {
-          k = 0;
-        }
-        this.calendar[i].name = this.weekdayList[k];
-        k++;
       }
     }
-    this.closeContinuous();
-    return this.calendar;
   }
 
   // 연속 2일 근무 막기
