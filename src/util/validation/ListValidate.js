@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from "../../constants/message.js";
 
-// 월과 시작 요일 입력 예외 처리
+// 평일 & 휴일 비상 근무 순서 입력 예외 처리
 const ListValidate = (input) => {
   const inputArr = input.split(",");
 
