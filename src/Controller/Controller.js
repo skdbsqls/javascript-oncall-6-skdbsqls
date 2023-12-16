@@ -1,5 +1,8 @@
 import List from "../Model/List.js";
+import Assign from "../Model/Assign.js";
+import Calendar from "../Model/Calendar.js";
 import InputView from "../View/InputView.js";
+import OutputView from "../View/OutputView.js";
 import MonthAndDay from "../Model/MonthAndDay.js";
 import { Console } from "@woowacourse/mission-utils";
 
@@ -8,10 +11,12 @@ class Controller {
   #day;
   #weekdayList;
   #weekendList;
+  #assign;
 
   async play() {
     await this.requestMonthAndDay();
     await this.requestList();
+    this.getAssign();
   }
 
   // 월과 시작 요일 입력
@@ -49,6 +54,17 @@ class Controller {
       Console.print(error.message);
       return this.requestList();
     }
+  }
+
+  // 비상 근무일 배정
+  getAssign() {
+    const calendar = new Calendar(this.#month, this.#day).getCalendar();
+
+    this.#assign = new Assign(
+      calendar,
+      this.#weekdayList,
+      this.#weekendList
+    ).assignWork();
   }
 }
 
