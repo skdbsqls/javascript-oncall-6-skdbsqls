@@ -5,7 +5,7 @@ const InputView = {
   // 월과 시작 요일 입력
   async readMonthAndDay() {
     const monthAndDay = await Console.readLineAsync(INPUT_MESSAGE.monthAndDay);
-    return monthAndDay;
+    return String(monthAndDay);
   },
   // 평일 비상 근무 순번 입력
   async readWeekdayList() {
