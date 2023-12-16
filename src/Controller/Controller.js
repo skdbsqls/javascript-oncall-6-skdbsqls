@@ -17,6 +17,7 @@ class Controller {
     await this.requestMonthAndDay();
     await this.requestList();
     this.getAssign();
+    this.printAssign();
   }
 
   // 월과 시작 요일 입력
@@ -65,6 +66,14 @@ class Controller {
       this.#weekdayList,
       this.#weekendList
     ).assignWork();
+  }
+
+  // 비상 근무일 출력
+  printAssign() {
+    OutputView.printBlank();
+    this.#assign.forEach((assign) => {
+      OutputView.printAssign(this.#month, assign);
+    });
   }
 }
 

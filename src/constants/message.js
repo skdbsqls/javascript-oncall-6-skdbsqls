@@ -4,7 +4,10 @@ const INPUT_MESSAGE = Object.freeze({
   weekendList: "휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ",
 });
 
-const OUTPUT_MESSAGE = Object.freeze({});
+const OUTPUT_MESSAGE = Object.freeze({
+  assign: (month, assign) =>
+    `${month}월 ${assign.day}일 ${assign.date}${assign.holiday} ${assign.name}`,
+});
 
 const ERROR_MESSAGE = Object.freeze({
   invalid: "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.",
